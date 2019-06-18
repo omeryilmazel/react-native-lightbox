@@ -1,6 +1,6 @@
 import React, { Component,  Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, TouchableHighlight, View } from 'react-native';
+import { Animated, TouchableHighlight, View, SafeAreaView } from 'react-native';
 
 import LightboxOverlay from './LightboxOverlay';
 
@@ -120,7 +120,7 @@ export default class Lightbox extends Component {
   render() {
     // measure will not return anything useful if we dont attach a onLayout handler on android
     return (
-      <View
+      <SafeAreaView
         ref={component => this._root = component}
         style={this.props.style}
         onLayout={() => {}}
@@ -134,7 +134,7 @@ export default class Lightbox extends Component {
           </TouchableHighlight>
         </Animated.View>
         {this.props.navigator ? false : <LightboxOverlay {...this.getOverlayProps()} />}
-      </View>
+      </SafeAreaView>
     );
   }
 }
