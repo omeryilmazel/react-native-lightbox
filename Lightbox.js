@@ -121,19 +121,20 @@ export default class Lightbox extends Component {
     // measure will not return anything useful if we dont attach a onLayout handler on android
     return (
       <SafeAreaView
-        ref={component => this._root = component}
         style={this.props.style}
         onLayout={() => {}}
       >
-        <Animated.View style={{opacity: this.state.layoutOpacity}}>
-          <TouchableHighlight
-            underlayColor={this.props.underlayColor}
-            onPress={this.open}
-          >
-            {this.props.children}
-          </TouchableHighlight>
-        </Animated.View>
-        {this.props.navigator ? false : <LightboxOverlay {...this.getOverlayProps()} />}
+        <View ref={component => this._root = component}>
+          <Animated.View style={{opacity: this.state.layoutOpacity}}>
+            <TouchableHighlight
+              underlayColor={this.props.underlayColor}
+              onPress={this.open}
+            >
+              {this.props.children}
+            </TouchableHighlight>
+          </Animated.View>
+          {this.props.navigator ? false : <LightboxOverlay {...this.getOverlayProps()} />}
+        </View>
       </SafeAreaView>
     );
   }
